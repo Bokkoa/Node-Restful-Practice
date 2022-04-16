@@ -7,7 +7,12 @@ const app = require('.')  // this file
 
 
 // services
-const { HomeService } = require('../services')
+const { 
+    HomeService,
+    UserService,
+    CommentService,
+    IdeaService
+} = require('../services')
 
 
 // Controllers
@@ -37,7 +42,10 @@ container.register({
     router: asFunction(Routes).singleton(),
     config: asValue(config)
 }).register({
-    HomeService: asClass(HomeService)
+    HomeService: asClass(HomeService),
+    UserService: asClass(UserService),
+    CommentService: asClass(CommentService),
+    IdeaService: asClass(IdeaService)
 }).register({
     HomeController: asClass(HomeController.bind(HomeController))
 }).register({
