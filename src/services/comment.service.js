@@ -7,10 +7,10 @@ let _ideaRepository = null
 
 class CommentService extends BaseService{
 
-    constructor({CommentRepository, ideaRepository}){
+    constructor({CommentRepository, IdeaRepository}){
         super(CommentRepository)
         _commentRepository = CommentRepository
-        _ideaRepository = ideaRepository
+        _ideaRepository = IdeaRepository
     }
 
     // snippet
