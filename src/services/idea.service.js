@@ -1,5 +1,5 @@
 const  BaseService =  require('./base.service')
-const {Exceptions} = require('../helpers')
+const {ExceptionsHelper} = require('../helpers')
 let _ideaRepository = null
 
 class IdeaService extends BaseService{
@@ -11,7 +11,7 @@ class IdeaService extends BaseService{
     async getUserIdeas(author){
 
         if(!author){
-            Exceptions.HttpErrors.badRequestError('author must be sent')
+            ExceptionsHelper.HttpErrors.badRequestError('author must be sent')
         }
 
         return await _ideaRepository.getUserIdeas(author);
@@ -19,13 +19,13 @@ class IdeaService extends BaseService{
 
     async upvotedIdea(ideaId){
         if(!ideaId){
-            Exceptions.HttpErrors.badRequestError('ideaId must be sent')
+            ExceptionsHelper.HttpErrors.badRequestError('ideaId must be sent')
         }
 
         const idea = await _ideaRepository.get(ideaId)
 
         if(!idea){
-            Exceptions.HttpErrors.notFoundError('idea')
+            ExceptionsHelper.HttpErrors.notFoundError('idea')
         }
 
         idea.upvotes.push(true);
@@ -35,13 +35,13 @@ class IdeaService extends BaseService{
 
     async downvotedIdea(ideaId){
         if(!ideaId){
-            Exceptions.HttpErrors.badRequestError('ideaId must be sent')
+            ExceptionsHelper.HttpErrors.badRequestError('ideaId must be sent')
         }
 
         const idea = await _ideaRepository.get(ideaId)
 
         if(!idea){
-            Exceptions.HttpErrors.notFoundError('idea')
+            ExceptionsHelper.HttpErrors.notFoundError('idea')
         }
 
         idea.downvotes.push(true);

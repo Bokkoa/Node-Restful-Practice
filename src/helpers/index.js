@@ -1,5 +1,6 @@
 
 
 module.exports = {
-    Exceptions: require('./exeptions')
+    ExceptionsHelper: require('./exeptions.helper'),
+    JwtHelper: require('./jwt.helper')
 }

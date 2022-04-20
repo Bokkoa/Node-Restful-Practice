@@ -1,5 +1,5 @@
 
-const { Exceptions } = require('../helpers')
+const { ExceptionsHelper } = require('../helpers')
 
 class BaseService{
     constructor(repository){
@@ -9,13 +9,13 @@ class BaseService{
     async get(id){
 
         if(!id){
-            Exceptions.HttpErrors.badRequestError('id must be send')
+            ExceptionsHelper.HttpErrors.badRequestError('id must be send')
         }
 
         const  currentEntity = await this.repository.get(id);
         
         if(!currentEntity){
-            Exceptions.HttpErrors.notFoundError('entity')
+            ExceptionsHelper.HttpErrors.notFoundError('entity')
         }
 
         return currentEntity
@@ -33,7 +33,7 @@ class BaseService{
     async update(id, entity){
 
         if(!id){
-            Exceptions.HttpErrors.badRequestError('id must be send')
+            ExceptionsHelper.HttpErrors.badRequestError('id must be send')
         }
 
         return await this.repository.update(id, entity);
@@ -44,7 +44,7 @@ class BaseService{
     async delete(id){
 
         if(!id){
-            Exceptions.HttpErrors.badRequestError('id must be send')
+            ExceptionsHelper.HttpErrors.badRequestError('id must be send')
         }
 
         return await this.repository.delete(id);

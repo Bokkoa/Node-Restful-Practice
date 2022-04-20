@@ -13,6 +13,13 @@ class HttpErrors{
         error.message = subject
         throw error
     }
+
+    static unauthorizedError(subject){
+        const error = new Error()
+        error.status = 401;
+        error.message = subject
+        throw error
+    }
 }
 
 module.exports = {

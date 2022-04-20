@@ -1,6 +1,6 @@
 const BaseService = require('./base.service')
 
-const {Exceptions} = require('../helpers')
+const {ExceptionsHelper} = require('../helpers')
 
 let _commentRepository = null;
 let _ideaRepository = null
@@ -17,13 +17,13 @@ class CommentService extends BaseService{
     async getIdeaAfterValidate(ideaId){
 
         if(!ideaId){
-            Exceptions.HttpErrors.badRequestError('ideaId must be sent')
+            ExceptionsHelper.HttpErrors.badRequestError('ideaId must be sent')
         }
 
         const idea = await _ideaRepository.get(ideaId)
 
         if(!idea){
-            Exceptions.HttpErrors.notFoundError('idea')
+            ExceptionsHelper.HttpErrors.notFoundError('idea')
         }
         return idea
     }

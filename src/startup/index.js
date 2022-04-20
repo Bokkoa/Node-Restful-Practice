@@ -1,5 +1,4 @@
 const expresss = require('express')
-
 let _express = null
 let _config = null
 
