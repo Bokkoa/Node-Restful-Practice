@@ -22,7 +22,7 @@ class BaseService{
 
     }
 
-    async getAll(){
+    async getAll(pageSize, pageNumber){
         return await this.repository.getAll();
     }
 

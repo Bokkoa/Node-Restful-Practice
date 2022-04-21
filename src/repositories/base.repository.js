@@ -9,8 +9,10 @@ class BaseRepository {
     }
 
 
-    async getAll(){
-        return await this.model.find();
+    async getAll(pageSize=5, pageNumber=1){
+        // skip - limit
+        const skips = pageSize * (pageNumber - 1); // getting te page as skips
+        return await this.model.find().skip(skips).limit(pageSize); // getting the paginated
     }
 
     async create(entity){
