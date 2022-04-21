@@ -9,7 +9,8 @@ class AuthService{
 
     async signUp(user){
         const {username} = user;
-        const userExist = _userService.getUserByUsername(username);
+        const userExist = await _userService.getUserByUsername(username);
+        console.log({userExist})
         if(userExist){
             ExceptionsHelper.HttpErrors.unauthorizedError('User already exists')
         }
@@ -19,7 +20,7 @@ class AuthService{
 
     async signIn(user){
         const {username, password} = user;
-        const userExist = _userService.getUserByUsername(username);
+        const userExist = await _userService.getUserByUsername(username);
         if(!userExist){
             ExceptionsHelper.HttpErrors.notFoundError('User')
         }

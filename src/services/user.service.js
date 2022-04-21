@@ -9,8 +9,8 @@ class UserService extends BaseService{
         _userRepository = UserRepository
     }
 
-    async getUserByUsernanme(username){
-        return await _userRepository.getUserByUsernanme(username)
+    async getUserByUsername(username){
+        return await _userRepository.getUserByUsername(username)
     }
 }
 
