@@ -34,9 +34,9 @@ class CommentService extends BaseService{
         return comments;
     }
 
-    async createComment(comment, ideaId){
+    async createComment(comment, ideaId, userId){
         const idea = await this.getIdeaAfterValidate(ideaId)
-        const createdComment = await _commentRepository.create(comment);
+        const createdComment = await _commentRepository.create({...comment, author: userId});
         idea.comments.push(createdComment);
         return await _ideaRepository.update(ideaId, {comments: idea.comments})
     }

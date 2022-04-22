@@ -8,6 +8,10 @@ require('express-async-errors')
 
 const { NotFoundMiddleware, ErrorMiddleware } = require('../middlewares')
 
+const swaggerUI = require('swagger-ui-express');
+const { SWAGGER_PATH } = require('../config')
+const swaggerDocument = require(SWAGGER_PATH)
+
 module.exports = function({HomeRoutes, 
                            UserRoutes, 
                            CommentRoutes, 
@@ -31,6 +35,7 @@ module.exports = function({HomeRoutes,
         apiRoutes.use('/auth', AuthRoutes);
 
         router.use('/api', apiRoutes);
+        router.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
         router.use(NotFoundMiddleware);
         router.use(ErrorMiddleware);
